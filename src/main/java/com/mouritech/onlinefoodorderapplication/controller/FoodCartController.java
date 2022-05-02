@@ -38,6 +38,7 @@ import com.mouritech.onlinefoodorderapplication.repository.CustomerRepository1;
 import com.mouritech.onlinefoodorderapplication.service.AuthenticationService;
 
 import com.mouritech.onlinefoodorderapplication.service.CustomerService2;
+import com.mouritech.onlinefoodorderapplication.service.FoodCartItemsService;
 import com.mouritech.onlinefoodorderapplication.service.FoodCartService;
 import com.mouritech.onlinefoodorderapplication.serviceImpl.ItemServiceImpl;
 
@@ -50,7 +51,8 @@ import io.swagger.annotations.Api;
 public class FoodCartController {
 	@Autowired
 	private FoodCartService foodCartService;
-	
+	@Autowired
+	private FoodCartItemsService foodCartItemsService;
 	@Autowired
 	private AuthenticationService authenticationService;
 	@Autowired
@@ -97,12 +99,12 @@ public class FoodCartController {
 //	        foodCartService.updateCartItem(cartDto, customer,items);
 //	        return new ResponseEntity<APIResponse>(new APIResponse(true, "Item has been updated"), HttpStatus.OK);
 //	    }
-	 @DeleteMapping("/delete/{cartId}")
-		public ResponseEntity<APIResponse> deleteCartItem(@PathVariable("cartId") long cartId,
+	 @DeleteMapping("/delete/{cartItemId}")
+		public ResponseEntity<APIResponse> deleteCartItem(@PathVariable("cartItemId") long cartItemId,
 				@RequestParam("token") String token) throws AuthenticationFailException, CartItemNotExistException {
 			authenticationService.authenticate(token);
 			long userId = authenticationService.getCustomer(token).getCustomerId();
-			foodCartService.deleteCartItem(cartId, userId);
+			foodCartService.deleteCartItem(cartItemId, userId);
 			return new ResponseEntity<APIResponse>(new APIResponse(true, "Item has been removed"), HttpStatus.OK);
 		}
 

@@ -22,7 +22,7 @@ import io.swagger.annotations.Api;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/items")
-//@Api(value = "")
+@Api(value = "")
 public class ItemsController {
 	@Autowired
 	private ItemService itemService;

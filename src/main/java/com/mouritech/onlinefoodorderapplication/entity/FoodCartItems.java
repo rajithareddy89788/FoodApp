@@ -47,7 +47,7 @@ public class FoodCartItems {
 	 @JsonIgnore
 	private FoodCart foodCart;
 	
-	private boolean isActive;
+	//private boolean isActive;
    
    
 	
@@ -128,15 +128,15 @@ public class FoodCartItems {
 		this.customer = customer;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	
+//	public boolean isActive() {
+//		return isActive;
+//	}
+//
+//	public void setActive(boolean isActive) {
+//		this.isActive = isActive;
+//	}
+//
+//	
 	
 	
 		

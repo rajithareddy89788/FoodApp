@@ -29,6 +29,6 @@ public interface FoodCartService {
 	    public CartDto listCartItems(Customer customer);   
 		public void updateCartItem(AddToCartDto cartDto, Customer customer,Items items);
 		public void deleteCartItems(int customerId);
-		public void deleteCartItem(long id, long userId) throws CartItemNotExistException;
+		public void deleteCartItem(long cartItemid, long userId) throws CartItemNotExistException;
 		 public void deleteUserCartItems(Customer customer);
 }
