@@ -47,59 +47,62 @@ import com.mouritech.onlinefoodorderapplication.utils.Helper;
 public class OrderServiceImpl implements OrderService1 {
 
 	@Autowired
-    private FoodCartServiceImpl cartService;
+	private FoodCartServiceImpl cartService;
 
-    @Autowired
-    OrderRepository orderRepository;
+	@Autowired
+	OrderRepository orderRepository;
 
-    @Autowired
-    OrderItemsRepository orderItemsRepository;
-    @Override
-    public void placeOrder(Customer customer, PlaceOrderDto1 dto1) {
-      
-        CartDto cartDto = cartService.listCartItems(customer);
+	@Autowired
+	OrderItemsRepository orderItemsRepository;
 
-        //List<CartItemDto> cartItemDtoList = cartDto.getcartItems();
+	@Override
+	public void placeOrder(Customer customer, PlaceOrderDto1 dto1) {
 
-      
-        Order newOrder = new Order();
-        newOrder.setCreatedDate(new Date());
-        //newOrder.setSessionId(sessionId);
-        newOrder.setCustomer(customer);
-        newOrder.setTotalPrice(cartDto.getTotalCost());
-        newOrder.setShippingAddress(dto1.getShippingAddress());
-        orderRepository.save(newOrder);
-       List<OrderItem>  orderItemList = new ArrayList<>();
-        for (PlaceOrderDto cartItemDto : dto1.getPlaceOrderDto()) {
-           
-            OrderItem orderItem = new OrderItem();
-            orderItem.setCreatedDate(new Date());
-            orderItem.setPrice(cartItemDto.getItemPrice());
-            //orderItem.setItems(cartItemDto.getItemName());
-            orderItem.setQuantity(cartItemDto.getItemQuantity());
-            orderItem.setItemName(cartItemDto.getItemName());
-           // orderItem.setShippingAddress(cartItemDto.getShippingAddress());
-            orderItem.setTotal(cartItemDto.getItemPrice() * cartItemDto.getItemQuantity());
-            orderItem.setOrder(newOrder);
-            orderItemList.add(orderItemsRepository.save(orderItem));
-        }
-         
-        //
-        cartService.deleteUserCartItems(customer);
-    }
-    @Override
-    public List<Order> listOrders(Customer customer) {
-        return orderRepository.findAllByCustomerOrderByCreatedDateDesc(customer);
+		CartDto cartDto = cartService.listCartItems(customer);
+
+		// List<CartItemDto> cartItemDtoList = cartDto.getcartItems();
+
+		Order newOrder = new Order();
+		newOrder.setCreatedDate(new Date());
+		// newOrder.setSessionId(sessionId);
+		newOrder.setCustomer(customer);
+		newOrder.setTotalPrice(cartDto.getTotalCost());
+		newOrder.setShippingAddress(dto1.getShippingAddress());
+
+		newOrder.setPaymentMode(dto1.getPaymentMode());
+		orderRepository.save(newOrder);
+		List<OrderItem> orderItemList = new ArrayList<>();
+		for (PlaceOrderDto cartItemDto : dto1.getPlaceOrderDto()) {
+
+			OrderItem orderItem = new OrderItem();
+			orderItem.setCreatedDate(new Date());
+			orderItem.setPrice(cartItemDto.getItemPrice());
+			// orderItem.setItems(cartItemDto.getItemName());
+			orderItem.setQuantity(cartItemDto.getItemQuantity());
+			orderItem.setItemName(cartItemDto.getItemName());
+			// orderItem.setShippingAddress(cartItemDto.getShippingAddress());
+			orderItem.setTotal(cartItemDto.getItemPrice() * cartItemDto.getItemQuantity());
+			orderItem.setOrder(newOrder);
+			orderItemList.add(orderItemsRepository.save(orderItem));
+		}
+
+		//
+		cartService.deleteUserCartItems(customer);
+	}
+
+	@Override
+	public List<Order> listOrders(Customer customer) {
+		return orderRepository.findAllByCustomerOrderByCreatedDateDesc(customer);
 //        ByCustomerOrderByCreatedDateDesc
-    }
+	}
 
-@Override
-    public Order getOrder(long orderId) throws OrderNotFoundException {
-        Optional<Order> order = orderRepository.findById(orderId);
-        if (order.isPresent()) {
-            return order.get();
-        }
-        throw new OrderNotFoundException("Order not found");
-    }
+	@Override
+	public Order getOrder(long orderId) throws OrderNotFoundException {
+		Optional<Order> order = orderRepository.findById(orderId);
+		if (order.isPresent()) {
+			return order.get();
+		}
+		throw new OrderNotFoundException("Order not found");
+	}
 
 }

@@ -30,8 +30,10 @@ public class Order {
 
     @Column(name = "total_price")
     private double totalPrice;
-    
+    @Column(name = "shipping_address")
     private String shippingAddress;
+    @Column(name = "payment_mode")
+    private String paymentMode;
 
 //    @Column(name = "session_id")
 //    private String sessionId;
@@ -167,6 +169,24 @@ public class Order {
 
 	public void setShippingAddress(String shippingAddress) {
 		this.shippingAddress = shippingAddress;
+	}
+
+
+
+
+
+
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+
+
+
+
+
+
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
 	}
 
    

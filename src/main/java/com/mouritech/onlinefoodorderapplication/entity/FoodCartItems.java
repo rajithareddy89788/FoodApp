@@ -66,7 +66,7 @@ public class FoodCartItems {
 	private Items items1;
 	
 	 @ManyToOne(fetch = FetchType.EAGER)
-		@JoinColumn(name = "customer_id")
+		@JoinColumn(name = "customerId")
 		 @JsonIgnore
 		private Customer customer;
 	

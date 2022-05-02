@@ -77,26 +77,28 @@ public class FoodCartServiceImpl implements FoodCartService {
 		foodCartRepository.save(foodCart);
 		List<FoodCartItems> foodCartItemsList = new ArrayList<>();
 
-		for (AddToCartDto addToCartDto1 : dto1) {
+		//for (AddToCartDto addToCartDto1 : dto1) {
+		dto1.stream().forEach(x -> {
+			FoodCartItems foodCartItems1 = foodCartItemsRepository
+					.findByItems1AndCustomer(itemsRepository.findById(x.getItemId()).get(), customer);
 
-			FoodCartItems foodCartItems1 = foodCartItemsRepository.findByCartItemId(addToCartDto1.getItemId());
 			if (ObjectUtils.isEmpty(foodCartItems1)) {
 				foodCartItems1 = new FoodCartItems();
 			}
 
-			foodCartItems1.setQuantity(addToCartDto1.getQuantity());
+			foodCartItems1.setQuantity(x.getQuantity());
 
 			List<Items> productList = new ArrayList<>();
 
-			foodCartItems1.setItems1(itemService.getProductById(addToCartDto1.getItemId()));
+			foodCartItems1.setItems1(itemService.getProductById(x.getItemId()));
 
-			productList.add(itemService.getProductById(addToCartDto1.getItemId()));
+			productList.add(itemService.getProductById(x.getItemId()));
 
 			foodCartItems1.setFoodCart(foodCart);
 			foodCartItems1.setCustomer(customer);
 
 			foodCartItemsList.add(foodCartItemsRepository.save(foodCartItems1));
-		}
+		});
 
 	}
 
@@ -110,16 +112,31 @@ public class FoodCartServiceImpl implements FoodCartService {
 	public CartDto listCartItems(Customer customer) {
 		List<FoodCartItems> cartList = foodCartItemsRepository.findAllByCustomer(customer);
 		List<CartItemDto> cartItems = new ArrayList<>();
-		for (FoodCartItems cart : cartList) {
-			CartItemDto cartItemDto = getDtoFromCart(cart);
+		
+//		for (FoodCartItems cart : cartList) {
+//		
+//			CartItemDto cartItemDto = getDtoFromCart(cart);
+//			cartItems.add(cartItemDto);
+//		}
+		cartList.stream().forEach(x -> {
+			CartItemDto cartItemDto = getDtoFromCart(x);
 			cartItems.add(cartItemDto);
-		}
-		double totalCost = 0;
+		});
+	
+		
+		 double totalCost = 0;
 
 		for (CartItemDto cartItemDto : cartItems) {
 
 			totalCost += (cartItemDto.getItems().getItemPrice() * cartItemDto.getQuantity());
 		}
+	//double totalCost = 0;
+//		cartItems.stream().forEach(y -> {
+//	 totalCost +=(y.getItems().getItemPrice() * y.getQuantity());
+//	
+//	});
+		
+	
 		return new CartDto(cartItems, totalCost);
 	}
 
