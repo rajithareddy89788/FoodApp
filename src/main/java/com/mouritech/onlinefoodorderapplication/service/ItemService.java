@@ -9,9 +9,9 @@ public interface ItemService {
 
 	Items addItems(Long restaurantId, Items items) throws ResourceNotFoundException;
 
-Items addItems(Items items);
+	Items addItems(Items items);
 
-Items updateItems(Items items) throws ResourceNotFoundException;
+	Items updateItems(Items items) throws ResourceNotFoundException;
 
 	Items updateById(Items items, Long itemId) throws ResourceNotFoundException;
 
@@ -27,7 +27,4 @@ Items updateItems(Items items) throws ResourceNotFoundException;
 
 	Items deleteByName(String itemName);
 
-
-
-	
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
+
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,60 +22,41 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_Id")
 	private Long customerId;
-	
-	@Column(name="customer_name")
+
+	@Column(name = "customer_name")
 	private String customerName;
-	
-	
+
 	@Column(name = "customer_age", nullable = false)
 	private int customerAge;
-	
+
 	@Column(name = "customer_Email", nullable = false)
 	private String customerEmail;
-	
+
 	@Column(name = "customer_password")
 	private String customerPassword;
-	
-	
+
 	@Column(name = "customer_mobileNumber", nullable = false)
 	private String customerMobileNumber;
-	
+
 	@Column(name = "customer_address", nullable = false)
 	private String customerAddress;
-	
+
 	@Column(name = "customer_city", nullable = false)
 	private String customerCity;
 
 	@Column(name = "customer_state", nullable = false)
 	private String customerState;
-	
+
 	@Column(name = "customer_country", nullable = false)
 	private String customerCountry;
-	
+
 	@Column(name = "customer_pincode", nullable = false)
 	private String customerPincode;
-	
-//	 @JsonIgnore
-//	    @OneToMany(mappedBy = "user",
-//	            fetch = FetchType.LAZY)
-//	    private List<Order> orders;
-//	, fetch = FetchType.LAZY
-	
-	
-//	@OneToOne(mappedBy = "customer" , orphanRemoval = true, cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-//	private FoodCart foodCart;
-//    @OneToOne(mappedBy = "customer" , orphanRemoval = true, cascade = CascadeType.REMOVE , fetch = FetchType.EAGER)
-//    @JsonIgnore
-//    private FoodCart foodCart;
-    
-//    @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE , fetch = FetchType.EAGER)
-//	private List<Orderdetails> orderdetails;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE, fetch=FetchType.EAGER )
+	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<FoodCart> foodCart;
 
-    
 	public List<FoodCart> getFoodCart() {
 		return foodCart;
 	}
@@ -171,17 +152,6 @@ public class Customer {
 	public void setCustomerPincode(String customerPincode) {
 		this.customerPincode = customerPincode;
 	}
-	
-	
-	
-
-//	public FoodCart getFoodCart() {
-//		return foodCart;
-//	}
-//
-//	public void setFoodCart(FoodCart foodCart) {
-//		this.foodCart = foodCart;
-//	}
 
 	public Customer(String customerName, int customerAge, String customerEmail, String customerPassword,
 			String customerMobileNumber, String customerAddress, String customerCity, String customerState,
@@ -197,23 +167,13 @@ public class Customer {
 		this.customerState = customerState;
 		this.customerCountry = customerCountry;
 		this.customerPincode = customerPincode;
-		
-	}
 
-	
+	}
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-//	public List<Orderdetails> getOrderdetails() {
-//		return orderdetails;
-//	}
-//
-//	public void setOrderdetails(List<Orderdetails> orderdetails) {
-//		this.orderdetails = orderdetails;
-//	}
 
 	public Customer(Long customerId, String customerName, int customerAge, String customerEmail,
 			String customerPassword, String customerMobileNumber, String customerAddress, String customerCity,
@@ -231,29 +191,5 @@ public class Customer {
 		this.customerCountry = customerCountry;
 		this.customerPincode = customerPincode;
 	}
-
-	
-	
-//	public Customer(Long customerId, String customerName, int customerAge, String customerEmail,
-//			String customerPassword, String customerMobileNumber, String customerAddress, String customerCity,
-//			String customerState, String customerCountry, String customerPincode, List<Orderdetails> orderdetails) {
-//		super();
-//		this.customerId = customerId;
-//		this.customerName = customerName;
-//		this.customerAge = customerAge;
-//		this.customerEmail = customerEmail;
-//		this.customerPassword = customerPassword;
-//		this.customerMobileNumber = customerMobileNumber;
-//		this.customerAddress = customerAddress;
-//		this.customerCity = customerCity;
-//		this.customerState = customerState;
-//		this.customerCountry = customerCountry;
-//		this.customerPincode = customerPincode;
-//		this.orderdetails = orderdetails;
-//	}
-//	
-
-    
-	
 
 }

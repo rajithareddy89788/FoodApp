@@ -9,8 +9,8 @@ import com.mouritech.onlinefoodorderapplication.entity.Customer;
 import com.mouritech.onlinefoodorderapplication.entity.Order;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long>{
-	
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
 	List<Order> findAllByCustomerOrderByCreatedDateDesc(Customer customer);
-//	 List<Order> findAllByCustomerOrderByCreatedDateDesc(Customer customer);
+
 }

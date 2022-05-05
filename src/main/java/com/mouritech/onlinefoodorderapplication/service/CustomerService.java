@@ -11,14 +11,13 @@ public interface CustomerService {
 
 	void addCustomerInformation(Customer customer);
 
-	//boolean findCustomerByEmailAndPassword(String customerEmail, String customerPassword);
 	Customer findCustomerByEmailAndPassword(String customerEmail, String customerPassword);
 
 	ResponseEntity<?> updatecustomerinfobyname(Customer customer);
 
 	Customer deleteCustomer(Long customerId) throws ResourceNotFoundException;
-	
+
 	List<Customer> getAllCustomer();
-	
+
 	Customer addCustomer(Customer customer);
 }

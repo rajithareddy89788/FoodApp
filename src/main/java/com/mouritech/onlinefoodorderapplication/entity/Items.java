@@ -1,9 +1,5 @@
 package com.mouritech.onlinefoodorderapplication.entity;
 
-
-
-//import javax.persistence.CascadeType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,80 +22,66 @@ public class Items {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "item_Id")
-		private long itemId;
-		
-		private String itemName;
-		private String itemImageName;
-		
-		private int itemPrice;
-		
-		private String itemDescription;
-		
-		//private int itemQuantity;
-		
-		@ManyToOne(fetch = FetchType.EAGER)
-		@JoinColumn(name = "restaurant_id")
-		 @JsonIgnore
-		private Restaurant restaurant;
-		
+	private long itemId;
 
-		public long getItemId() {
-			return itemId;
-		}
+	private String itemName;
+	private String itemImageName;
 
-		public void setItemId(long itemId) {
-			this.itemId = itemId;
-		}
+	private int itemPrice;
 
-		public String getItemName() {
-			return itemName;
-		}
+	private String itemDescription;
 
-		public void setItemName(String itemName) {
-			this.itemName = itemName;
-		}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "restaurant_id")
+	@JsonIgnore
+	private Restaurant restaurant;
 
-		public String getItemImageName() {
-			return itemImageName;
-		}
+	public long getItemId() {
+		return itemId;
+	}
 
-		public void setItemImageName(String itemImageName) {
-			this.itemImageName = itemImageName;
-		}
+	public void setItemId(long itemId) {
+		this.itemId = itemId;
+	}
 
-		public int getItemPrice() {
-			return itemPrice;
-		}
+	public String getItemName() {
+		return itemName;
+	}
 
-		public void setItemPrice(int itemPrice) {
-			this.itemPrice = itemPrice;
-		}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
-		public String getItemDescription() {
-			return itemDescription;
-		}
+	public String getItemImageName() {
+		return itemImageName;
+	}
 
-		public void setItemDescription(String itemDescription) {
-			this.itemDescription = itemDescription;
-		}
+	public void setItemImageName(String itemImageName) {
+		this.itemImageName = itemImageName;
+	}
 
-//		public int getItemQuantity() {
-//			return itemQuantity;
-//		}
-//
-//		public void setItemQuantity(int itemQuantity) {
-//			this.itemQuantity = itemQuantity;
-//		}
+	public int getItemPrice() {
+		return itemPrice;
+	}
 
-		public Restaurant getRestaurant() {
-			return restaurant;
-		}
+	public void setItemPrice(int itemPrice) {
+		this.itemPrice = itemPrice;
+	}
 
-		public void setRestaurant(Restaurant restaurant) {
-			this.restaurant = restaurant;
-		}
-		
-		
+	public String getItemDescription() {
+		return itemDescription;
+	}
 
-			}
+	public void setItemDescription(String itemDescription) {
+		this.itemDescription = itemDescription;
+	}
 
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+}

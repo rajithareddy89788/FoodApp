@@ -1,4 +1,4 @@
-	package com.mouritech.onlinefoodorderapplication;
+package com.mouritech.onlinefoodorderapplication;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

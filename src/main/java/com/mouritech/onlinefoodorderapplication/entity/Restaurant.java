@@ -2,8 +2,6 @@ package com.mouritech.onlinefoodorderapplication.entity;
 
 import java.util.List;
 
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,70 +18,63 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "restaurant_id")
 	private long restaurantId;
-	
+
 	@Column(name = "restaurant_name")
 	@NotNull
 	@NotBlank
 	@NotEmpty
 	private String restaurantName;
-	
+
 	@Column(name = "restaurant_password")
 	@NotNull
 	@NotBlank
 	@NotEmpty
 	private String restaurantPassword;
-	
+
 	@Column(name = "restaurant_email")
 	@NotNull
 	@NotBlank
 	@NotEmpty
 	private String restaurantEmail;
-	
+
 	@Column(name = "restaurant_address")
 	private String restaurantAddress;
-	
+
 	@Column(name = "restaurant_city")
 	private String restaurantCity;
-	
+
 	@Column(name = "restaurant_state")
 	private String restaurantState;
-	
+
 	@Column(name = "restaurant_image_name")
 	private String restaurantImageName;
-	
-	
+
 	@Column(name = "restaurant_country")
 	private String restaurantcountry;
-	
+
 	@Column(name = "restaurant_pincode")
 	private int restaurantPincode;
-	
+
 	@Column(name = "restaurant_manager_first_name")
 	private String restaurantManagerFirstName;
-	
+
 	@Column(name = "restaurant_manager_last_name")
 	private String restaurantManagerLastName;
-	
+
 	@Column(name = "restaurant_manager_number")
 	private String restaurantManagerNumber;
-	
+
 	@Column(name = "restaurant_manager_email_id")
 	private String restaurantManagerEmail;
-	
+
 	@OneToMany(mappedBy = "restaurant", orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Items> items;
 
-//	@OneToMany(mappedBy = "restaurant",orphanRemoval = true, cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
-//	private List<Orderdetails> orderdetails;
-	
-//	@OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
-//	private List<Customer> customer;
-	
 	public long getRestaurantId() {
 		return restaurantId;
 	}
@@ -139,7 +130,6 @@ public class Restaurant {
 	public void setRestaurantState(String restaurantState) {
 		this.restaurantState = restaurantState;
 	}
-	
 
 	public String getRestaurantImageName() {
 		return restaurantImageName;
@@ -204,24 +194,6 @@ public class Restaurant {
 	public void setItems(List<Items> items) {
 		this.items = items;
 	}
-	
-
-
-//	public List<Customer> getCustomers() {
-//			return customer;
-//	}
-//
-//	public void setCustomers(List<Customer> customer) {
-//		this.customer = customer;
-//	}
-	
-//	public List<Orderdetails> getOrderdetails() {
-//		return orderdetails;
-//	}
-//
-//	public void setOrderdetails(List<Orderdetails> orderdetails) {
-//		this.orderdetails = orderdetails;
-//	}
 
 	public Restaurant() {
 		super();
@@ -307,30 +279,5 @@ public class Restaurant {
 		this.restaurantManagerNumber = restaurantManagerNumber;
 		this.restaurantManagerEmail = restaurantManagerEmail;
 	}
-
-//	public Restaurant(long restaurantId, String restaurantName, String restaurantPassword, String restaurantEmail,
-//			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
-//			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
-//			String restaurantManagerNumber, String restaurantManagerEmail, List<Items> items, List<Orderdetails> orderdetails) {
-//		super();
-//		this.restaurantId = restaurantId;
-//		this.restaurantName = restaurantName;
-//		this.restaurantPassword = restaurantPassword;
-//		this.restaurantEmail = restaurantEmail;
-//		this.restaurantAddress = restaurantAddress;
-//		this.restaurantCity = restaurantCity;
-//		this.restaurantState = restaurantState;
-//		this.restaurantcountry = restaurantcountry;
-//		this.restaurantPincode = restaurantPincode;
-//		this.restaurantManagerFirstName = restaurantManagerFirstName;
-//		this.restaurantManagerLastName = restaurantManagerLastName;
-//		this.restaurantManagerNumber = restaurantManagerNumber;
-//		this.restaurantManagerEmail = restaurantManagerEmail;
-//		this.items = items;
-//		this.orderdetails = orderdetails;
-//	}
-
-	
-
 
 }

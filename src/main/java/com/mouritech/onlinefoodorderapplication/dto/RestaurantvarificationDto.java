@@ -1,8 +1,7 @@
 package com.mouritech.onlinefoodorderapplication.dto;
 
-
 public class RestaurantvarificationDto {
-	
+
 	private String restaurantPassword;
 
 	private String restaurantEmail;
@@ -33,8 +32,5 @@ public class RestaurantvarificationDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	
 
 }

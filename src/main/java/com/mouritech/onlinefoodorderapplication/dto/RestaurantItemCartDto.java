@@ -3,9 +3,9 @@ package com.mouritech.onlinefoodorderapplication.dto;
 import java.util.List;
 
 public class RestaurantItemCartDto {
-	
+
 	private String restaurantName;
-	
+
 	private List<String> itemNames;
 
 	public String getRestaurantName() {
@@ -23,7 +23,5 @@ public class RestaurantItemCartDto {
 	public void setItemNames(List<String> itemNames) {
 		this.itemNames = itemNames;
 	}
-	
-	
 
 }

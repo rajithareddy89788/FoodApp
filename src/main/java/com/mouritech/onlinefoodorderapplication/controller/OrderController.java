@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mouritech.onlinefoodorderapplication.common.APIResponse;
-import com.mouritech.onlinefoodorderapplication.dto.PlaceOrderDto;
 import com.mouritech.onlinefoodorderapplication.dto.PlaceOrderDto1;
 import com.mouritech.onlinefoodorderapplication.entity.Customer;
 import com.mouritech.onlinefoodorderapplication.entity.Order;

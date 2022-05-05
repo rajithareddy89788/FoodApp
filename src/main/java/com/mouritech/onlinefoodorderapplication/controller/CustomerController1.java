@@ -42,12 +42,6 @@ public class CustomerController1 {
 	@Autowired
 	CustomerService2 customerService;
 
-//	    @GetMapping("/all")
-//	    public List<Customer> findAllUser(@RequestParam("token") String token) throws AuthenticationFailException {
-//	        authenticationService.authenticate(token);
-//	        return userRepository.findAll();
-//	    }
-
 	@PostMapping("/signup")
 	public ResponseDto Signup(@RequestBody SignupDto signupDto) throws CustomException {
 		return customerService.signUp(signupDto);
@@ -75,12 +69,5 @@ public class CustomerController1 {
 		}
 
 	}
-
-//	    @PostMapping("/signIn")
-//	    public SignInResponseDto Signup(@RequestBody SignInDto signInDto) throws CustomException {
-//	        return customerService.signIn(signInDto);
-//	        //return ResponseEntity.ok().body("login successful and"+"Customer id is =="+result.getCustomerName());
-//	    }
-//	
 
 }

@@ -21,6 +21,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	Restaurant findByRestaurantPassword(String restaurantPassword);
 
 	void deleteByItems_ItemName(String itemName);
+
 	@Query("SELECT r FROM Restaurant r WHERE r.restaurantCity LIKE %?1%")
 	List<RestaurentDto> findByRestaurantCity(String restaurantCity);
 

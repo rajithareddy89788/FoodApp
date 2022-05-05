@@ -2,10 +2,10 @@ package com.mouritech.onlinefoodorderapplication.dto;
 
 public class CustomerCreateDto {
 	private String customerName;
-    
-    private String customerEmail;
-  
-    private String customerPassword;
+
+	private String customerEmail;
+
+	private String customerPassword;
 
 	public String getCustomerName() {
 		return customerName;
@@ -31,5 +31,4 @@ public class CustomerCreateDto {
 		this.customerPassword = customerPassword;
 	}
 
-   
 }

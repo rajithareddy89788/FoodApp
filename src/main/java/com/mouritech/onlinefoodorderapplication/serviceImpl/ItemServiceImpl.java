@@ -13,17 +13,19 @@ import com.mouritech.onlinefoodorderapplication.exceptions.ProductNotExistExcept
 import com.mouritech.onlinefoodorderapplication.repository.ItemsRepository;
 import com.mouritech.onlinefoodorderapplication.repository.RestaurantRepository;
 import com.mouritech.onlinefoodorderapplication.service.ItemService;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
-	
+
 	@Autowired
 	ItemsRepository itemsRepository;
 
 	@Override
 	public Items addItems(Long restaurantId, Items items) throws ResourceNotFoundException {
-		Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new ResourceNotFoundException());
+		Restaurant restaurant = restaurantRepository.findById(restaurantId)
+				.orElseThrow(() -> new ResourceNotFoundException());
 		items.setRestaurant(restaurant);
 		Items finalItems = itemsRepository.save(items);
 		return finalItems;
@@ -36,14 +38,15 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Items updateItems(Items items) throws ResourceNotFoundException {
-	Items existingItems = itemsRepository.findById(items.getItemId()).orElseThrow(() -> new ResourceNotFoundException());
-	existingItems.setItemName(items.getItemName());
-	existingItems.setItemPrice(items.getItemPrice());
-	//existingItems.setItemQuantity(items.getItemQuantity());
-	existingItems.setItemDescription(items.getItemDescription());
-	itemsRepository.save(existingItems);
-	return existingItems;
-	
+		Items existingItems = itemsRepository.findById(items.getItemId())
+				.orElseThrow(() -> new ResourceNotFoundException());
+		existingItems.setItemName(items.getItemName());
+		existingItems.setItemPrice(items.getItemPrice());
+		// existingItems.setItemQuantity(items.getItemQuantity());
+		existingItems.setItemDescription(items.getItemDescription());
+		itemsRepository.save(existingItems);
+		return existingItems;
+
 	}
 
 	@Override
@@ -51,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
 		Items existingItems = itemsRepository.findById(itemId).orElseThrow(() -> new ResourceNotFoundException());
 		existingItems.setItemName(items.getItemName());
 		existingItems.setItemPrice(items.getItemPrice());
-		//existingItems.setItemQuantity(items.getItemQuantity());
+		// existingItems.setItemQuantity(items.getItemQuantity());
 		existingItems.setItemDescription(items.getItemDescription());
 		itemsRepository.save(existingItems);
 		return existingItems;
@@ -94,18 +97,18 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Items deleteByName(String itemName) {
-		
+
 		Items items = itemsRepository.findByItemName(itemName);
 		itemsRepository.delete(items);
 
 		return items;
 	}
-	 public Items getProductById(long itemId) throws ProductNotExistException {
-	       Optional<Items> optionalProduct = itemsRepository.findById(itemId);
-	        if (!optionalProduct.isPresent())
-	            throw new ProductNotExistException("Product id is invalid " + itemId);
-	        return optionalProduct.get();
-	    }
 
+	public Items getProductById(long itemId) throws ProductNotExistException {
+		Optional<Items> optionalProduct = itemsRepository.findById(itemId);
+		if (!optionalProduct.isPresent())
+			throw new ProductNotExistException("Product id is invalid " + itemId);
+		return optionalProduct.get();
+	}
 
 }

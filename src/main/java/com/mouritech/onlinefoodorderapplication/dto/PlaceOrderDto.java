@@ -11,8 +11,6 @@ public class PlaceOrderDto {
 	private int itemQuantity;
 
 	private int subTotal;
-	
-	//private String shippingAddress;
 
 	public String getItemName() {
 		return itemName;
@@ -53,14 +51,5 @@ public class PlaceOrderDto {
 	public void setSubTotal(int subTotal) {
 		this.subTotal = subTotal;
 	}
-
-//	public String getShippingAddress() {
-//		return shippingAddress;
-//	}
-//
-//	public void setShippingAddress(String shippingAddress) {
-//		this.shippingAddress = shippingAddress;
-//	}
-//	
 
 }

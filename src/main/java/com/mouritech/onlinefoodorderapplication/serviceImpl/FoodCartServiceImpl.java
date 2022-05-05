@@ -1,50 +1,31 @@
 package com.mouritech.onlinefoodorderapplication.serviceImpl;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.xml.bind.DatatypeConverter;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import com.mouritech.onlinefoodorderapplication.config.MessageStrings;
 import com.mouritech.onlinefoodorderapplication.dto.AddToCartDto;
 import com.mouritech.onlinefoodorderapplication.dto.CartDto;
 import com.mouritech.onlinefoodorderapplication.dto.CartItemDto;
-import com.mouritech.onlinefoodorderapplication.dto.ResponseDto;
-import com.mouritech.onlinefoodorderapplication.dto.SignInDto;
-import com.mouritech.onlinefoodorderapplication.dto.SignInResponseDto;
-import com.mouritech.onlinefoodorderapplication.dto.SignupDto;
-import com.mouritech.onlinefoodorderapplication.entity.AuthenticationToken;
+
 import com.mouritech.onlinefoodorderapplication.entity.Customer;
 import com.mouritech.onlinefoodorderapplication.entity.FoodCart;
 import com.mouritech.onlinefoodorderapplication.entity.FoodCartItems;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
-import com.mouritech.onlinefoodorderapplication.enums.ResponseStatus;
 
-import com.mouritech.onlinefoodorderapplication.exceptions.AuthenticationFailException;
 import com.mouritech.onlinefoodorderapplication.exceptions.CartItemNotExistException;
-import com.mouritech.onlinefoodorderapplication.exceptions.CustomException;
 
-import com.mouritech.onlinefoodorderapplication.repository.CustomerRepository1;
 import com.mouritech.onlinefoodorderapplication.repository.FoodCartItemsRepository;
 import com.mouritech.onlinefoodorderapplication.repository.FoodCartRepository;
 import com.mouritech.onlinefoodorderapplication.repository.ItemsRepository;
-import com.mouritech.onlinefoodorderapplication.service.AuthenticationService;
 
-import com.mouritech.onlinefoodorderapplication.service.CustomerService2;
-import com.mouritech.onlinefoodorderapplication.service.FoodCartItemsService;
 import com.mouritech.onlinefoodorderapplication.service.FoodCartService;
-import com.mouritech.onlinefoodorderapplication.utils.Helper;
 
 @Service
 public class FoodCartServiceImpl implements FoodCartService {
@@ -77,7 +58,6 @@ public class FoodCartServiceImpl implements FoodCartService {
 		foodCartRepository.save(foodCart);
 		List<FoodCartItems> foodCartItemsList = new ArrayList<>();
 
-		//for (AddToCartDto addToCartDto1 : dto1) {
 		dto1.stream().forEach(x -> {
 			FoodCartItems foodCartItems1 = foodCartItemsRepository
 					.findByItems1AndCustomer(itemsRepository.findById(x.getItemId()).get(), customer);
@@ -112,31 +92,19 @@ public class FoodCartServiceImpl implements FoodCartService {
 	public CartDto listCartItems(Customer customer) {
 		List<FoodCartItems> cartList = foodCartItemsRepository.findAllByCustomer(customer);
 		List<CartItemDto> cartItems = new ArrayList<>();
-		
-//		for (FoodCartItems cart : cartList) {
-//		
-//			CartItemDto cartItemDto = getDtoFromCart(cart);
-//			cartItems.add(cartItemDto);
-//		}
+
 		cartList.stream().forEach(x -> {
 			CartItemDto cartItemDto = getDtoFromCart(x);
 			cartItems.add(cartItemDto);
 		});
-	
-		
-		 double totalCost = 0;
+
+		double totalCost = 0;
 
 		for (CartItemDto cartItemDto : cartItems) {
 
 			totalCost += (cartItemDto.getItems().getItemPrice() * cartItemDto.getQuantity());
 		}
-	//double totalCost = 0;
-//		cartItems.stream().forEach(y -> {
-//	 totalCost +=(y.getItems().getItemPrice() * y.getQuantity());
-//	
-//	});
-		
-	
+
 		return new CartDto(cartItems, totalCost);
 	}
 

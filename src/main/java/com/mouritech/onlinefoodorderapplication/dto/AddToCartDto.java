@@ -1,16 +1,11 @@
 package com.mouritech.onlinefoodorderapplication.dto;
 
-import com.mouritech.onlinefoodorderapplication.entity.FoodCart;
-import com.mouritech.onlinefoodorderapplication.entity.Items;
-
 public class AddToCartDto {
 	private long id;
 	private long itemId;
 	private int quantity;
 	private boolean isActive;
-	
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -28,7 +23,7 @@ public class AddToCartDto {
 	}
 
 	public AddToCartDto() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public long getItemId() {
@@ -46,9 +41,5 @@ public class AddToCartDto {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
-	
-	
-	
 
 }

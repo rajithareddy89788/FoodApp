@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mouritech.onlinefoodorderapplication.dto.ItemDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurentDto;
@@ -42,30 +40,6 @@ public class RestaurantController {
 	@Autowired
 	private ItemService itemService;
 
-//	@PostMapping("/addrestaurantinfo")
-//	public ResponseEntity<?> addRestaurantInformation(@RequestBody Restaurant restaurant) {
-//		restaurantService.addRestaurantInformation(restaurant);
-//
-//		return ResponseEntity.ok().body("all restaurant information inserted");
-//
-//	}
-
-//	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
-//	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
-//			@PathVariable(value ="restaurantPassword") String restaurantPassword){
-//		
-//		Restaurant result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
-//		if(result!=null) {
-//			return ResponseEntity.ok().body(result.getRestaurantName());
-//		}
-//	
-//		else {
-//			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
-//			
-//		}
-//		
-//	}
-
 	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
 	public ResponseEntity<?> findRestaurantByEmailAndPassword(
 			@PathVariable(value = "restaurantEmail") String restaurantEmail,
@@ -73,15 +47,9 @@ public class RestaurantController {
 
 		Restaurant result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail, restaurantPassword);
 
-		// Non changed one
-
 		if (result != null) {
 			return ResponseEntity.ok()
 					.body("login successful and " + "Restaurant name is ==" + result.getRestaurantName());
-
-			// return ResponseEntity.ok().body({ mesage:"login successful",
-			// username: result.getRestaurantName();
-			// });
 
 		}
 
@@ -95,11 +63,6 @@ public class RestaurantController {
 	@PostMapping("/getrestaurantbyemailandpassword")
 	public ResponseEntity<?> findRestaurantByEmailAndPassword(
 			@RequestBody RestaurantvarificationDto restaurantvarificationDto) {
-
-		// Restaurant result =
-		// restaurantService.findRestaurantByEmailAndPassword(restaurantvarificationDto.getRestaurantEmail(),restaurantvarificationDto.getRestaurantPassword());
-
-		// Changed Part
 
 		Restaurant emailCheck = restaurantService.findRestaurantByEmail(restaurantvarificationDto.getRestaurantEmail());
 
@@ -119,18 +82,6 @@ public class RestaurantController {
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email Not Found");
 		}
-
-		// don't change
-
-//                if(result!=null) {
-//        	  return ResponseEntity.ok().body("login successful and "+"Restaurant name is =="+result.getRestaurantName());
-//        	
-//        }
-//
-//        else {
-//             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
-//
-//        }
 
 	}
 
@@ -168,7 +119,6 @@ public class RestaurantController {
 
 	}
 
-//Adding  restaurant details using entity class
 	@PostMapping("/add")
 	public Restaurant addRestaurant(@RequestBody Restaurant restaurant) {
 
@@ -238,13 +188,5 @@ public class RestaurantController {
 
 		return restaurantService.getAllByCity(restaurantCity);
 	}
-
-//	@GetMapping("/getorderdetails/{restaurantName}")
-//	public Orderdetails getOrderDetails(@PathVariable(value = "restaurantName") String restaurantName)
-//			throws ResourceNotFoundException {
-//
-//		return restaurantService.getOrderDetails(restaurantName);
-//
-//	}
 
 }

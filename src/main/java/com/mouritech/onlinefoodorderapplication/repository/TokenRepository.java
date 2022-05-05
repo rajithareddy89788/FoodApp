@@ -9,6 +9,7 @@ import com.mouritech.onlinefoodorderapplication.entity.Customer;
 @Repository
 public interface TokenRepository extends JpaRepository<AuthenticationToken, Integer> {
 	AuthenticationToken findTokenByCustomer(Customer customer);
-    AuthenticationToken findTokenByToken(String token);
+
+	AuthenticationToken findTokenByToken(String token);
 
 }

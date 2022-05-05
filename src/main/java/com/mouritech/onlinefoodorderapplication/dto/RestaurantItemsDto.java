@@ -5,11 +5,11 @@ import java.util.List;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 
 public class RestaurantItemsDto {
-	
+
 	private String restaurantPassword;
 
 	private String restaurantEmail;
-	
+
 	private List<Items> items;
 
 	public String getRestaurantPassword() {
@@ -48,5 +48,4 @@ public class RestaurantItemsDto {
 		// TODO Auto-generated constructor stub
 	}
 
-		
 }

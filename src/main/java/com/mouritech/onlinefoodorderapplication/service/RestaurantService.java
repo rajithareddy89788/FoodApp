@@ -19,7 +19,7 @@ public interface RestaurantService {
 	ResponseEntity<?> updaterestaurantinfobyname(Restaurant restaurant);
 
 	Restaurant findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
-	
+
 	Restaurant findRestaurantByEmail(String restaurantEmail);
 
 	ResponseEntity<?> checkRestauramtEmailAndPassword(RestaurantvarificationDto restaurantDto);
@@ -38,18 +38,12 @@ public interface RestaurantService {
 
 	ResponseEntity<Restaurant> getrestaurantInfoAndItems(String restaurantName);
 
-	ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName) throws ResourceNotFoundException;
+	ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName)
+			throws ResourceNotFoundException;
 
-	ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName, Items items) throws ResourceNotFoundException;
+	ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName, Items items)
+			throws ResourceNotFoundException;
 
 	List<RestaurentDto> getAllByCity(String restaurantCity);
-	
-	
-	
-
-	//Orderdetails getOrderDetails(String restaurantName) throws ResourceNotFoundException;
-
-
-
 
 }

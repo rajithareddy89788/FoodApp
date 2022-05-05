@@ -10,11 +10,11 @@ import com.mouritech.onlinefoodorderapplication.entity.FoodCart;
 import com.mouritech.onlinefoodorderapplication.entity.FoodCartItems;
 
 @Repository
-public interface FoodCartRepository extends JpaRepository<FoodCart, Long>  {
+public interface FoodCartRepository extends JpaRepository<FoodCart, Long> {
 	List<FoodCart> findAllByCustomer(Customer customer);
 
 	void save(FoodCartItems cart);
 
-    List<FoodCart> deleteByCustomer(Customer customer);
-    //List<FoodCart> findAllByCustomer(Customer customer);
+	List<FoodCart> deleteByCustomer(Customer customer);
+
 }
