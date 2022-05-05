@@ -9,14 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
+
+import com.mouritech.onlinefoodorderapplication.dto.RestaurantDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
-import com.mouritech.onlinefoodorderapplication.dto.RestaurentDto;
 
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
 import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
+import com.mouritech.onlinefoodorderapplication.exceptions.RestaurantNotExistException;
 import com.mouritech.onlinefoodorderapplication.mapper.RestaurantItemsMapper;
 import com.mouritech.onlinefoodorderapplication.mapper.RestaurantMapper;
 
@@ -271,11 +273,23 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public List<RestaurentDto> getAllByCity(String restaurantCity) {
+	public List<RestaurantDto> getAllByCity(String restaurantCity) {
 
-		List<RestaurentDto> getAllRestaurantByCity = restaurantRepository.findByRestaurantCity(restaurantCity);
+		List<RestaurantDto> getAllRestaurantByCity = restaurantRepository.findByRestaurantCity(restaurantCity);
 
 		return getAllRestaurantByCity;
 	}
+	@Override
+	public List<RestaurantDto> searchByRestaurantName(String restaurantName) {
+		List<RestaurantDto>restaurant=restaurantRepository.searchByRestaurantName1(restaurantName);
+		if(restaurant.isEmpty())
+		{
+			throw new RestaurantNotExistException("Restaurant is not available");
+		}
+		
+		return restaurantRepository.searchByRestaurantName1(restaurantName);
+	}
+
+
 
 }

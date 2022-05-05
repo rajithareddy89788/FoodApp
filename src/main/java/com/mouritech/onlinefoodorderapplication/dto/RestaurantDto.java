@@ -3,12 +3,12 @@ package com.mouritech.onlinefoodorderapplication.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
 
-public class RestaurentDto {
+public class RestaurantDto {
 	private String restaurantName;
 	@JsonIgnore
 	private String restaurantCity;
 
-	public RestaurentDto(Restaurant restaurant) {
+	public RestaurantDto(Restaurant restaurant) {
 
 		this.setRestaurantName(restaurant.getRestaurantName());
 		this.setRestaurantCity(restaurant.getRestaurantCity());
@@ -31,13 +31,13 @@ public class RestaurentDto {
 		this.restaurantCity = restaurantCity;
 	}
 
-	public RestaurentDto(String restaurantName, String restaurantCity) {
+	public RestaurantDto(String restaurantName, String restaurantCity) {
 		super();
 		this.restaurantName = restaurantName;
 		this.restaurantCity = restaurantCity;
 	}
 
-	public RestaurentDto() {
+	public RestaurantDto() {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.mouritech.onlinefoodorderapplication.dto.RestaurantDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
-import com.mouritech.onlinefoodorderapplication.dto.RestaurentDto;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
@@ -44,6 +44,7 @@ public interface RestaurantService {
 	ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName, Items items)
 			throws ResourceNotFoundException;
 
-	List<RestaurentDto> getAllByCity(String restaurantCity);
+	List<RestaurantDto> getAllByCity(String restaurantCity);
+	List<RestaurantDto> searchByRestaurantName(String restaurentName);
 
 }

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mouritech.onlinefoodorderapplication.dto.RestaurantDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
-import com.mouritech.onlinefoodorderapplication.dto.RestaurentDto;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
@@ -184,9 +184,16 @@ public class RestaurantController {
 	}
 
 	@GetMapping("/getrestaurantAndItemsByCity/{restaurantCity}")
-	public List<RestaurentDto> getbyCity(@PathVariable(value = "restaurantCity") String restaurantCity) {
+	public List<RestaurantDto> getbyCity(@PathVariable(value = "restaurantCity") String restaurantCity) {
 
 		return restaurantService.getAllByCity(restaurantCity);
 	}
+	@GetMapping("/searchbyrestaurant/{restaurentName}")
+	public ResponseEntity<List<RestaurantDto>>searchByRestaurentName(
+	@PathVariable(name = "restaurentName") String restaurantName) {
+	List<RestaurantDto> body = restaurantService.searchByRestaurantName(restaurantName);
+	return new ResponseEntity<List<RestaurantDto>>(body, HttpStatus.OK);
+	}
+
 
 }

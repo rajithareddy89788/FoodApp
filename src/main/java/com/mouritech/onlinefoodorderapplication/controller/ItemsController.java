@@ -3,6 +3,8 @@ package com.mouritech.onlinefoodorderapplication.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mouritech.onlinefoodorderapplication.dto.ItemDto2;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 import com.mouritech.onlinefoodorderapplication.service.ItemService;
@@ -80,6 +83,13 @@ public class ItemsController {
 	@DeleteMapping("/deleteByName/{itemName}")
 	public Items deleteByName(@PathVariable(value = "itemName") String itemName) {
 		return itemService.deleteByName(itemName);
+	}
+	
+	@GetMapping("/searchbyitems/{itemName}")
+	public ResponseEntity<List<ItemDto2>>searchByItemName(
+	@PathVariable(name = "itemName") String itemName) {
+	List<ItemDto2> body = itemService.searchByItemName(itemName);
+	return new ResponseEntity<List<ItemDto2>>(body, HttpStatus.OK);
 	}
 
 }

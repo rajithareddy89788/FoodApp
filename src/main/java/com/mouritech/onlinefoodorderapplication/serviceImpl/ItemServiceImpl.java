@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mouritech.onlinefoodorderapplication.dto.ItemDto2;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
 import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
+import com.mouritech.onlinefoodorderapplication.exceptions.ItemNotExistException;
 import com.mouritech.onlinefoodorderapplication.exceptions.ProductNotExistException;
 import com.mouritech.onlinefoodorderapplication.repository.ItemsRepository;
 import com.mouritech.onlinefoodorderapplication.repository.RestaurantRepository;
@@ -110,5 +112,15 @@ public class ItemServiceImpl implements ItemService {
 			throw new ProductNotExistException("Product id is invalid " + itemId);
 		return optionalProduct.get();
 	}
+	@Override
+	 public List<ItemDto2> searchByItemName(String itemName) {
+			List<ItemDto2>items=itemsRepository.searchByItemName(itemName);
+			if(items.isEmpty())
+			{
+				throw new ItemNotExistException("item is not available");
+			}
+			
+			return itemsRepository.searchByItemName(itemName);
+		}
 
 }

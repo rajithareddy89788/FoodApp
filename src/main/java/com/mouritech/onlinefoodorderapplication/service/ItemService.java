@@ -2,6 +2,7 @@ package com.mouritech.onlinefoodorderapplication.service;
 
 import java.util.List;
 
+import com.mouritech.onlinefoodorderapplication.dto.ItemDto2;
 import com.mouritech.onlinefoodorderapplication.entity.Items;
 import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
 
@@ -26,5 +27,5 @@ public interface ItemService {
 	List<Items> getItemsByRestaurantName(String restaurantName);
 
 	Items deleteByName(String itemName);
-
+	List<ItemDto2> searchByItemName(String itemName);
 }
